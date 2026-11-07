@@ -13,7 +13,6 @@ def mostrar_menu_principal():
     print("2. Gestion de servicios")
     print("3. Gestion de facturacion")
     print("4. Reportes")
-    print("5. Casos Excepcionales")
     print("0. Salir")
 
 
@@ -251,7 +250,11 @@ def menu_servicios(servicio_controller):
                         valor_servicio = int(input("Valor del servicio (sin puntos ni comas): "))
                         especialidad = input("Especialidad de la cita: ")
                         #fecha = input("Fecha y hora de la cita (YYYY-MM-DD HH:MM): ")
-                        servicio_controller.agregar_servicioCita("Cita", valor_servicio, especialidad)
+                        try:
+                            servicio_controller.agregar_servicioCita("Cita", valor_servicio, especialidad)
+                            print("Servicio de tipo Cita registrado exitosamente.")
+                        except Exception as e:
+                            print(f"Error al registrar el servicio de tipo Cita: {e}")
                     case "2":
                         if servicio_controller.buscar_servicio("Examen") is not None:
                             print("Ya existe un servicio de tipo Examen.")
@@ -259,7 +262,11 @@ def menu_servicios(servicio_controller):
                         valor_servicio = int(input("Valor del servicio (sin puntos ni comas): "))
                         nombre_examen = input("Nombre del examen: ")
                         #fecha = input("Fecha y hora del examen (YYYY-MM-DD HH:MM): ")
-                        servicio_controller.agregar_servicioExamen("Examen", valor_servicio, nombre_examen)
+                        try:
+                            servicio_controller.agregar_servicioExamen("Examen", valor_servicio, nombre_examen)
+                            print("Servicio de tipo Examen registrado exitosamente.")
+                        except Exception as e:
+                            print(f"Error al registrar el servicio de tipo Examen: {e}")
                     case "3":
                         if servicio_controller.buscar_servicio("Medicamento") is not None:
                             print("Ya existe un servicio de tipo Medicamento.")
@@ -268,7 +275,11 @@ def menu_servicios(servicio_controller):
                         nombre_medicamento = input("Nombre del medicamento: ")
                         dosis = input("Dosis: ")
                         presentacion = input("Presentación: ")
-                        servicio_controller.agregar_servicioMedicamento("Medicamento", valor_servicio, nombre_medicamento, dosis, presentacion)
+                        try:
+                            servicio_controller.agregar_servicioMedicamento("Medicamento", valor_servicio, nombre_medicamento, dosis, presentacion)
+                            print("Servicio de tipo Medicamento registrado exitosamente.")
+                        except Exception as e:
+                            print(f"Error al registrar el servicio de tipo Medicamento: {e}")
             case "2":
                 # Eliminar servicio
                 servicios = servicio_controller.get_servicios()

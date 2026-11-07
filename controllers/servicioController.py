@@ -9,19 +9,16 @@ class servicioController:
     def agregar_servicioCita(self, tipoServicio, valorServicio, especialidadCita):
         nuevo_servicio = cita(tipoServicio, valorServicio, especialidadCita)
         self.servicios.append(nuevo_servicio)
-        print("Servicio agregado exitosamente.")
         return nuevo_servicio
 
     def agregar_servicioExamen(self, tipoServicio, valorServicio, nombreExamen):
         nuevo_servicio = examen(tipoServicio, valorServicio, nombreExamen)
         self.servicios.append(nuevo_servicio)
-        print("Servicio agregado exitosamente.")
         return nuevo_servicio
 
     def agregar_servicioMedicamento(self, tipoServicio, valorServicio, nombreMedicamento, dosis, presentacion):
         nuevo_servicio = medicamento(tipoServicio, valorServicio, nombreMedicamento, dosis, presentacion)
         self.servicios.append(nuevo_servicio)
-        print("Servicio agregado exitosamente.")
         return nuevo_servicio
 
     def get_servicios(self):
