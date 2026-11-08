@@ -13,6 +13,7 @@ def mostrar_menu_principal():
     print("2. Gestion de servicios")
     print("3. Gestion de facturacion")
     print("4. Reportes")
+    print("5. Casos excepcionales")
     print("0. Salir")
 
 
@@ -467,6 +468,101 @@ def menu_reportes(persona_controller, servicio_controller, facturacion_controlle
                 
         input("\nPresione una tecla para continuar...")
 
+
+def probar_fecha_nacimiento_invalida(persona_controller):
+    print("\nIntentando registrar un paciente con fecha de nacimiento vacía...")
+    try:
+        persona_controller.agregar_paciente(
+            "Paciente de prueba",
+            "900000001",
+            "prueba.fecha@email.com",
+            "3000000001",
+            "Calle de prueba",
+            "paciente",
+            "",
+            "Contacto de prueba",
+            "EPS de prueba"
+        )
+    except FechaNacimientoInvalida as e:
+        print(f"Excepción capturada: {e}")
+
+
+def probar_identificacion_vacia(persona_controller):
+    print("\nIntentando registrar un paciente con identificación vacía...")
+    try:
+        persona_controller.agregar_paciente(
+            "Paciente de prueba",
+            "",
+            "prueba.identificacion@email.com",
+            "3000000002",
+            "Calle de prueba",
+            "paciente",
+            "1990-01-01",
+            "Contacto de prueba",
+            "EPS de prueba"
+        )
+    except IdentificacionNoPuedeEstarVacia as e:
+        print(f"Excepción capturada: {e}")
+
+
+def probar_servicio_obligatorio(facturacion_controller):
+    print("\nIntentando registrar una factura sin servicio...")
+    try:
+        facturacion_controller.agregar_factura(
+            "F-ERROR",
+            None,
+            None,
+            None,
+            None,
+            "2026-01-01",
+            0
+        )
+    except ServicioObligatorioAlFacturar as e:
+        print(f"Excepción capturada: {e}")
+
+
+def probar_codigo_factura_invalido(facturacion_controller):
+    print("\nIntentando registrar una factura con código vacío...")
+    try:
+        facturacion_controller.agregar_factura(
+            "",
+            None,
+            None,
+            None,
+            None,
+            "2026-01-01",
+            0
+        )
+    except CodigoFacturaInvalido as e:
+        print(f"Excepción capturada: {e}")
+
+
+def menu_casos_excepcionales(persona_controller, facturacion_controller):
+    while True:
+        print("\n--- CASOS EXCEPCIONALES ---")
+        print("1. Fecha de nacimiento inválida")
+        print("2. Identificación vacía")
+        print("3. Servicio obligatorio al facturar")
+        print("4. Código de factura inválido")
+        print("0. Volver")
+        opcion = input(">>>Ingrese una opción del 1 a 4: ").strip()
+
+        match opcion:
+            case "1":
+                probar_fecha_nacimiento_invalida(persona_controller)
+            case "2":
+                probar_identificacion_vacia(persona_controller)
+            case "3":
+                probar_servicio_obligatorio(facturacion_controller)
+            case "4":
+                probar_codigo_factura_invalido(facturacion_controller)
+            case "0":
+                return
+            case _:
+                print("Opción inválida. Intente de nuevo.")
+        input("\nPresione una tecla para continuar...")
+
+
 def cargar_datos_prueba(persona_controller, servicio_controller, facturacion_controller):
     # precargamos datos de prueba para pacientes
     paciente_juan = persona_controller.agregar_paciente("Juan Torres", "123456789", "juan.torres@email.com", "3001234567", "Calle 123 #45-67", "paciente", "1990-05-15", "Juan Pérez - 3009876543", "EPS Sura")
@@ -501,7 +597,7 @@ def main():
 
     while True:
         mostrar_menu_principal()
-        opcion = input(">>>Ingrese una opción del 1 a 4: ").strip()
+        opcion = input(">>>Ingrese una opción del 1 a 5: ").strip()
 
         match opcion:
             case "1":
@@ -512,6 +608,8 @@ def main():
                 menu_facturacion(facturacion_controller, persona_controller, servicio_controller)
             case "4":
                 menu_reportes(persona_controller, servicio_controller, facturacion_controller)
+            case "5":
+                menu_casos_excepcionales(persona_controller, facturacion_controller)
             case "0":
                 print("Saliendo del sistema...")
                 break

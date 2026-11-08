@@ -41,7 +41,7 @@ class facturacion:
 
     def set_servicio(self, servicio):
         if servicio is None:
-            raise ServicioObligatorioAlFacturar("El servicio no puede estar vacío al facturar.")
+            raise ServicioObligatorioAlFacturar(servicio)
         self._servicio = servicio
 
     def get_servicio(self):
