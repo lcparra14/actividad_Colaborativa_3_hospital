@@ -13,7 +13,7 @@
 **Docente:** Natalia Castellanos
 **Universidad:** Universidad de Manizales  
 **Facultad / Programa:** Ingeniería en Seguridad de la Información - Ingeniería de Sistemas
-**Fecha:** 01 de noviembre de 2026
+**Fecha:** 07 de noviembre de 2026
 
 ## 1. Introducción
 

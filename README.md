@@ -80,8 +80,14 @@ Al iniciar, el sistema muestra un menú:
     2. Reporte de servicios
     3. Reporte de facturas
     0. Volver
+5. Casos excepcionales
+    1. Fecha de nacimiento inválida
+    2. Identificación vacía
+    3. Servicio obligatorio al facturar
+    4. Código de factura inválido
+    0. Volver
 0. Salir 
-Ingrese una opción del 0 al 4:
+>>>Ingrese una opción del 1 a 5:
 
 ## Explicación breve de cómo se aplicaron la herencia, la sobre escritura y el polimorfismo
 
